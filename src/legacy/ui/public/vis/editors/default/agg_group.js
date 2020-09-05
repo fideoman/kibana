@@ -33,6 +33,7 @@ uiModules
       ['onAggParamsChange', { watchDepth: 'reference' }],
       ['onAggTypeChange', { watchDepth: 'reference' }],
       ['onToggleEnableAgg', { watchDepth: 'reference' }],
+      ['onToggleHiddenAgg', { watchDepth: 'reference' }],
       ['removeAgg', { watchDepth: 'reference' }],
       ['reorderAggs', { watchDepth: 'reference' }],
       ['setTouched', { watchDepth: 'reference' }],
@@ -62,6 +63,7 @@ uiModules
             on-agg-params-change="onAggParamsChange"
             on-agg-type-change="onAggTypeChange"
             on-toggle-enable-agg="onToggleEnableAgg"
+            on-toggle-hidden-agg="onToggleHiddenAgg"
             remove-agg="removeAgg"
             reorder-aggs="reorderAggs"
             set-validity="setValidity"	

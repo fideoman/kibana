@@ -60,6 +60,7 @@ function DefaultEditorAgg({
   onAggParamsChange,
   onAggTypeChange,
   onToggleEnableAgg,
+  onToggleHiddenAgg,
   removeAgg,
   setTouched,
   setValidity,
@@ -140,12 +141,36 @@ function DefaultEditorAgg({
       });
     }
 
+    if (agg.schema.name === 'metric') {
+      if (!agg.hidden && isRemovable) {
+        actionIcons.push({
+          id: 'hideAggregation',
+          color: 'text',
+          type: 'eye',
+          onClick: () => onToggleHiddenAgg(agg, true),
+          tooltip: 'Hide aggregation',
+          dataTestSubj: 'toggleShowAggregationBtn disable',
+        });
+      }
+
+      if (agg.hidden && isRemovable) {
+        actionIcons.push({
+          id: 'showAggregation',
+          color: 'text',
+          type: 'eyeClosed',
+          onClick: () => onToggleHiddenAgg(agg, false),
+          tooltip: 'Show aggregation',
+          dataTestSubj: 'toggleShowAggregationBtn enable',
+        });
+      }
+    }
+
     if (agg.enabled && isRemovable) {
       actionIcons.push({
         id: 'disableAggregation',
         color: 'text',
         disabled: isDisabled,
-        type: 'eye',
+        type: 'minusInCircle',
         onClick: () => onToggleEnableAgg(agg, false),
         tooltip: i18n.translate('common.ui.vis.editors.agg.disableAggButtonTooltip', {
           defaultMessage: 'Disable aggregation',
@@ -157,7 +182,7 @@ function DefaultEditorAgg({
       actionIcons.push({
         id: 'enableAggregation',
         color: 'text',
-        type: 'eyeClosed',
+        type: 'minusInCircleFilled',
         onClick: () => onToggleEnableAgg(agg, true),
         tooltip: i18n.translate('common.ui.vis.editors.agg.enableAggButtonTooltip', {
           defaultMessage: 'Enable aggregation',
@@ -224,7 +249,7 @@ function DefaultEditorAgg({
 
   const buttonContent = (
     <>
-      {agg.schema.title} {showDescription && <span>{aggDescription}</span>}
+      {agg.schema.name === 'metric' && `${agg.id} -`} {agg.schema.title} {showDescription && <span>{aggDescription}</span>}
     </>
   );
 

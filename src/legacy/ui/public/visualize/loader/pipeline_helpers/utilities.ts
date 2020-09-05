@@ -86,6 +86,12 @@ export const createFormat = (agg: AggConfig): SerializedFieldFormat => {
       id: 'range',
       params: { id: format.id, ...format.params },
     }),
+    datasweet_formula: () => ({
+      id: agg.params.formatter,
+      params: {
+        pattern: agg.params.numeralFormat
+      },
+    }),
   };
 
   return formats[agg.type.name] ? formats[agg.type.name]() : format;

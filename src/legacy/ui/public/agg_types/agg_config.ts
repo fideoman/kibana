@@ -133,6 +133,7 @@ export class AggConfig {
     this.aggConfigs = aggConfigs;
     this.id = String(opts.id || AggConfig.nextId(aggConfigs.aggs as any));
     this.enabled = typeof opts.enabled === 'boolean' ? opts.enabled : true;
+    this.hidden = typeof opts.hidden === 'boolean' ? opts.hidden : false;
 
     // start with empty params so that checks in type/schema setters don't freak
     // because this.params is undefined

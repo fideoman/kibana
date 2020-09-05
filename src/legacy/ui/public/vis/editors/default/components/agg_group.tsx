@@ -61,6 +61,7 @@ function DefaultEditorAggGroup({
   onAggParamsChange,
   onAggTypeChange,
   onToggleEnableAgg,
+  onToggleHiddenAgg,
   removeAgg,
   reorderAggs,
   setTouched,
@@ -187,6 +188,7 @@ function DefaultEditorAggGroup({
                     onAggParamsChange={onAggParamsChange}
                     onAggTypeChange={onAggTypeChange}
                     onToggleEnableAgg={onToggleEnableAgg}
+                    onToggleHiddenAgg={onToggleHiddenAgg}
                     removeAgg={removeAgg}
                     setTouched={isTouched => setTouchedHandler(agg.id, isTouched)}
                     setValidity={isValid => setValidityHandler(agg.id, isValid)}
